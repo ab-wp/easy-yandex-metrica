@@ -1,0 +1,196 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Yandex Metrica\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-19 18:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.3.1; wp-5.3.2"
+
+#. Author of the plugin
+msgid "AB-WP"
+msgstr ""
+
+#: includes/admin-metrica.php:525
+msgid "by day"
+msgstr ""
+
+#: includes/admin-metrica.php:520
+msgid "by hours"
+msgstr ""
+
+#: includes/admin-metrica.php:535
+msgid "by months"
+msgstr ""
+
+#: includes/admin-metrica.php:530
+msgid "by week"
+msgstr ""
+
+#: includes/admin-metrica.php:229
+msgid "Cached page traffic"
+msgstr ""
+
+#: includes/admin-metrica.php:211
+msgid "Depth of view"
+msgstr ""
+
+#: includes/admin-metrica.php:516
+msgid "Detail"
+msgstr ""
+
+#: includes/admin-metrica.php:225
+msgid "Direct traffic"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Easily add statistics display Yandex.Metrica to the Wordpress admin panel."
+msgstr ""
+
+#. Name of the plugin
+msgid "Easy Yandex Metrica"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://ab-wp.com/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://ab-wp.com/plugins/easy-yandex-metrica/"
+msgstr ""
+
+#: includes/admin-metrica.php:226
+msgid "Internal traffic"
+msgstr ""
+
+#: includes/admin-metrica.php:227
+msgid "Link traffic"
+msgstr ""
+
+#: includes/admin-metrica.php:230
+msgid "Messenger traffic"
+msgstr ""
+
+#: includes/admin-metrica.php:507
+msgid "Month"
+msgstr ""
+
+#: includes/admin-metrica.php:209
+msgid "Proportion of new visitors"
+msgstr ""
+
+#: includes/admin-metrica.php:510
+msgid "Quarter"
+msgstr ""
+
+#: includes/admin-metrica.php:210
+msgid "Refusal"
+msgstr ""
+
+#: includes/admin-metrica.php:224
+msgid "Search engine traffic"
+msgstr ""
+
+#: easy-yandex-metrica.php:94 easy-yandex-metrica.php:95
+msgid "Settings"
+msgstr ""
+
+#: includes/admin-metrica.php:228
+msgid "Social network traffic"
+msgstr ""
+
+#: includes/admin-metrica.php:262
+msgid ""
+"Source: <a href=\"https://metrica.yandex.com\" target=\"_blank\">metrica."
+"yandex.com</a>"
+msgstr ""
+
+#: easy-yandex-metrica.php:73 easy-yandex-metrica.php:74
+#: includes/admin-metrica.php:119
+msgid "Sources, Search engine"
+msgstr ""
+
+#: easy-yandex-metrica.php:80 easy-yandex-metrica.php:81
+#: includes/admin-metrica.php:146
+msgid "Sources, Sites"
+msgstr ""
+
+#: easy-yandex-metrica.php:87 easy-yandex-metrica.php:88
+#: includes/admin-metrica.php:173
+msgid "Sources, Social Network"
+msgstr ""
+
+#: easy-yandex-metrica.php:66 easy-yandex-metrica.php:67
+#: includes/admin-metrica.php:92
+msgid "Sources, Summary"
+msgstr ""
+
+#: includes/admin-metrica.php:561
+msgid "The service is temporarily not available"
+msgstr ""
+
+#: includes/admin-metrica.php:212
+msgid "Time, min."
+msgstr ""
+
+#: includes/admin-metrica.php:498
+msgid "Today"
+msgstr ""
+
+#: easy-yandex-metrica.php:59 easy-yandex-metrica.php:60
+msgid "Traffic"
+msgstr ""
+
+#: includes/admin-metrica.php:207
+msgid "Views"
+msgstr ""
+
+#: includes/admin-metrica.php:208
+msgid "Visitors"
+msgstr ""
+
+#: includes/admin-metrica.php:206 includes/admin-metrica.php:260
+#: includes/admin-metrica.php:301
+msgid "Visits"
+msgstr ""
+
+#: includes/admin-metrica.php:251 includes/admin-metrica.php:292
+msgid "Visits for the month"
+msgstr ""
+
+#: includes/admin-metrica.php:249 includes/admin-metrica.php:290
+msgid "Visits for the quarter"
+msgstr ""
+
+#: includes/admin-metrica.php:247 includes/admin-metrica.php:288
+msgid "Visits for the year"
+msgstr ""
+
+#: includes/admin-metrica.php:253 includes/admin-metrica.php:294
+msgid "Visits per week"
+msgstr ""
+
+#: includes/admin-metrica.php:504
+msgid "Week"
+msgstr ""
+
+#: easy-yandex-metrica.php:50 easy-yandex-metrica.php:51
+msgid "Yandex.Metrica"
+msgstr ""
+
+#: includes/admin-metrica.php:513
+msgid "Year"
+msgstr ""
+
+#: includes/admin-metrica.php:501
+msgid "Yesterday"
+msgstr ""
