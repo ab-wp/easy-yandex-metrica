@@ -3,25 +3,36 @@
  * Plugin Name: Easy Yandex Metrica
  * Plugin URI:  https://ab-wp.com/plugins/easy-yandex-metrica/
  * Description: Easily add statistics display Yandex.Metrica to the Wordpress admin panel.
- * Version:     1.0.6
+ * Version:     1.1.1
  * Author:      AB-WP
  * Author URI:  https://ab-wp.com/
  * Text Domain: easy-yandex-metrica
  * Domain Path: /languages
  * Requires at least: 3.9
- * Tested up to: 5.7
+ * Tested up to: 5.8
  * License: GPLv2 (or later)
 **/
 if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 	class ABWP_easy_yandex_metrica
 	{
 		
+		const VERSION = '1.1';
+		
 		public function __construct()
 		{
+			//
+			register_activation_hook(__FILE__, array($this, 'plugin_activation'));
+			register_deactivation_hook(__FILE__, array($this, 'plugin_deactivation'));
+			//
 			if ( is_admin() ) { // admin actions
 				$this->load_dependencies();
 				$this->define_admin_hooks();
-				//$this->admin_scripts();
+				//
+				$version = get_option('abwp_eym_plugin_version');
+				if (self::VERSION != $version) {
+					$this->plugin_update();
+				}
+				//
 			}
 		}
 
@@ -50,7 +61,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 			$page = add_menu_page(
 				__( 'Yandex.Metrica', 'easy-yandex-metrica' ), 
 				__( 'Yandex.Metrica', 'easy-yandex-metrica' ), 
-				'administrator', 
+				'eym_view_metrica_reports', 
 				'abwp_eym', 
 				array( $admin_metrica, 'view' ), 
 				'dashicons-chart-bar',
@@ -61,7 +72,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'abwp_eym', 
 				__( 'Traffic', 'easy-yandex-metrica' ), 
 				__( 'Traffic', 'easy-yandex-metrica' ), 
-				'administrator', 
+				'eym_view_metrica_reports', 
 				'abwp_eym', 
 				array( $admin_metrica, 'view' ));
 			add_action( 'load-' . $page, array($this, 'admin_scripts'));
@@ -70,7 +81,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'abwp_eym', 
 				__( 'Sources, Summary', 'easy-yandex-metrica' ), 
 				__( 'Sources, Summary', 'easy-yandex-metrica' ), 
-				'administrator', 
+				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_summary', 
 				array( $admin_metrica, 'view_data_sources' ));
 			add_action( 'load-' . $page, array($this, 'admin_scripts'));
@@ -79,7 +90,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'abwp_eym', 
 				__( 'Sources, Search engine', 'easy-yandex-metrica' ), 
 				__( 'Sources, Search engine', 'easy-yandex-metrica' ), 
-				'administrator', 
+				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_engines', 
 				array( $admin_metrica, 'view_data_sources_engines' ));
 			add_action( 'load-' . $page, array($this, 'admin_scripts'));
@@ -88,7 +99,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'abwp_eym', 
 				__( 'Sources, Sites', 'easy-yandex-metrica' ), 
 				__( 'Sources, Sites', 'easy-yandex-metrica' ), 
-				'administrator', 
+				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_sites', 
 				array( $admin_metrica, 'view_data_sources_sites' ));
 			add_action( 'load-' . $page, array($this, 'admin_scripts'));
@@ -97,7 +108,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'abwp_eym', 
 				__( 'Sources, Social Network', 'easy-yandex-metrica' ), 
 				__( 'Sources, Social Network', 'easy-yandex-metrica' ), 
-				'administrator', 
+				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_social', 
 				array( $admin_metrica, 'view_data_sources_social' ));
 			add_action( 'load-' . $page, array($this, 'admin_scripts'));
@@ -106,7 +117,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'abwp_eym', 
 				__( 'Settings', 'easy-yandex-metrica' ), 
 				__( 'Settings', 'easy-yandex-metrica' ), 
-				'administrator', 
+				'manage_options', 
 				'abwp_eym_settings', 
 				array( $admin_metrica, 'view_settings' ));
 			//add_action( 'load-' . $page, array($this, 'admin_scripts'));
@@ -123,6 +134,38 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 		{
             register_setting( 'abwp-eym-options-group', 'abwp_eym_token');
             register_setting( 'abwp-eym-options-group', 'abwp_eym_counter_id');
+			register_setting( 'abwp-eym-options-group', 'abwp_eym_plugin_version');
+		}
+		
+		public function plugin_activation() 
+		{
+			if ( ! function_exists( 'get_editable_roles' ) ) {
+				require_once ABSPATH . 'wp-admin/includes/user.php';
+			}
+			//
+			$roles = get_editable_roles();
+			foreach ($GLOBALS['wp_roles']->role_objects as $key => $role) {
+				if (isset($roles[$key]) && $role->has_cap('manage_options')) {
+					$role->add_cap('eym_view_metrica_reports');
+				}
+			}
+			//
+			update_option('abwp_eym_plugin_version', self::VERSION);
+		}
+		
+		public function plugin_update() 
+		{
+			$this->plugin_activation();
+		}
+		
+		public function plugin_deactivation() 
+		{
+			$roles = get_editable_roles();
+			foreach ($GLOBALS['wp_roles']->role_objects as $key => $role) {
+				if (isset($roles[$key]) && $role->has_cap('eym_view_metrica_reports')) {
+					$role->remove_cap('eym_view_metrica_reports');
+				}
+			}
 		}
 	}
 
