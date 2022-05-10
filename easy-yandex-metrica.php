@@ -9,7 +9,7 @@
  * Text Domain: easy-yandex-metrica
  * Domain Path: /languages
  * Requires at least: 3.9
- * Tested up to: 5.8
+ * Tested up to: 6.0
  * License: GPLv2 (or later)
 **/
 if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
