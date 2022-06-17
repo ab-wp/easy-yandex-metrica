@@ -89,6 +89,51 @@ if ( !class_exists( 'ABWP_Admin_Metrica' ) ) {
 			echo $content;	
 		}
 
+		public function viewDashboard()
+		{
+			if (empty($this->yandex_metrika_token)) {
+				echo '<p>'.__('The plugin is not configured!', 'easy-yandex-metrica').'</p>';
+				echo '<a href="'.admin_url( 'admin.php' ).'?page=abwp_eym_settings'.'" class="button button-primary">'.__('Go to Settings', 'easy-yandex-metrica').'</a>';
+				return;
+			}
+			$array_url_data = array(
+				'preset' => 'traffic',
+				//'metrics' => 'ym:s:visits,ym:s:users,ym:s:pageviews,ym:s:percentNewVisitors,ym:s:bounceRate,ym:s:pageDepth,ym:s:avgVisitDurationSeconds',
+				'group' => $this->group,
+				'date1' => $this->date1,
+				'date2' => $this->date2,
+				'limit' => 366,
+				'ids' => $this->yandex_metrika_counter_id,
+				'oauth_token' => $this->yandex_metrika_token,
+			);
+			$url = 'https://api-metrika.yandex.net/stat/v1/data/bytime?'. http_build_query($array_url_data);
+			//
+			
+			$data = json_decode( $this->get_json_data($url), true);
+			ob_start();
+			if (!$data) {
+				include plugin_dir_path( __FILE__ ) . 'page-admin-metrica-error.php';
+			} else {
+				// 
+				$view_data_title = '';
+				$view_data = $this->create_data($data);
+				$view_data_gr = $this->create_data_columnchart($view_data);
+				$visitsToday = 0;
+				$visitsTotal = 0;
+				for ($i=0;$i<count($view_data);$i++) {
+					$visitsTotal += $view_data[$i]['metrics'][0];
+					if ($i == (count($view_data)-1)) {
+						$visitsToday = $view_data[$i]['metrics'][0];
+					}
+				}
+				
+				//
+				include plugin_dir_path( __FILE__ ) . 'page-admin-metrica-view-data-dashboard.php';
+			}
+			$content = ob_get_clean();
+			echo $content;	
+		}
+
 		/***
 		 * View Sources data
 		 */

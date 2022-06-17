@@ -3,7 +3,7 @@
  * Plugin Name: Easy Yandex Metrica
  * Plugin URI:  https://ab-wp.com/plugins/easy-yandex-metrica/
  * Description: Easily add statistics display Yandex.Metrica to the Wordpress admin panel.
- * Version:     1.1.1
+ * Version:     1.2.0
  * Author:      AB-WP
  * Author URI:  https://ab-wp.com/
  * Text Domain: easy-yandex-metrica
@@ -12,11 +12,17 @@
  * Tested up to: 6.0
  * License: GPLv2 (or later)
 **/
+
+// exit if accessed directly
+if ( ! defined( 'ABSPATH' ) )
+	exit;
+
+
 if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 	class ABWP_easy_yandex_metrica
 	{
 		
-		const VERSION = '1.1';
+		const VERSION = '1.2';
 		
 		public function __construct()
 		{
@@ -33,7 +39,10 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 					$this->plugin_update();
 				}
 				//
+				require_once plugin_dir_path( __FILE__ ) . 'includes/dashboard.php';
+				$dashboardWidget = new EasyYandexMetricaDashboard();
 			}
+			add_filter('plugin_action_links', array($this, 'plugin_action_links'), 10, 2 );
 		}
 
 		private function load_dependencies() 
@@ -43,7 +52,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 
 		private function define_admin_hooks() 
 		{
-			add_action('plugins_loaded', array($this,'load_plugin_textdomain'));
+			add_action('plugins_loaded', array($this, 'load_plugin_textdomain'));
 			add_action('admin_menu', array($this, 'admin_menu'));
 			add_action('admin_init', array($this, 'admin_init'));
 			//add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
@@ -123,6 +132,23 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 			//add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 		}
+
+
+
+		public function plugin_action_links($actions, $file) 
+		{		
+			static $plugin;
+	
+			$plugin = plugin_basename( __FILE__ );
+	
+			if ( $file == $plugin ) {
+				// put settings link at start
+				array_unshift($actions, sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php' ).'?page=abwp_eym_settings', __('Settings', 'easy-yandex-metrica')));
+			}
+	
+			return $actions;
+		}
+
 
 
         public function admin_scripts()
