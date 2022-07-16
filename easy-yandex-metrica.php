@@ -3,7 +3,7 @@
  * Plugin Name: Easy Yandex Metrica
  * Plugin URI:  https://ab-wp.com/plugins/easy-yandex-metrica/
  * Description: Easily add statistics display Yandex.Metrica to the Wordpress admin panel.
- * Version:     1.2.0
+ * Version:     1.2.1
  * Author:      AB-WP
  * Author URI:  https://ab-wp.com/
  * Text Domain: easy-yandex-metrica
@@ -22,7 +22,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 	class ABWP_easy_yandex_metrica
 	{
 		
-		const VERSION = '1.2';
+		const VERSION = '1.2.1';
 		
 		public function __construct()
 		{
@@ -55,7 +55,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 			add_action('plugins_loaded', array($this, 'load_plugin_textdomain'));
 			add_action('admin_menu', array($this, 'admin_menu'));
 			add_action('admin_init', array($this, 'admin_init'));
-			//add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
+			add_action('admin_enqueue_scripts', array($this, 'admin_scripts'));
 		}
 
 		public function load_plugin_textdomain() 
@@ -75,7 +75,6 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				array( $admin_metrica, 'view' ), 
 				'dashicons-chart-bar',
 				3 );
-			add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 			$page = add_submenu_page(
 				'abwp_eym', 
@@ -84,7 +83,6 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'eym_view_metrica_reports', 
 				'abwp_eym', 
 				array( $admin_metrica, 'view' ));
-			add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 			$page = add_submenu_page(
 				'abwp_eym', 
@@ -93,7 +91,6 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_summary', 
 				array( $admin_metrica, 'view_data_sources' ));
-			add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 			$page = add_submenu_page(
 				'abwp_eym', 
@@ -102,7 +99,6 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_engines', 
 				array( $admin_metrica, 'view_data_sources_engines' ));
-			add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 			$page = add_submenu_page(
 				'abwp_eym', 
@@ -111,7 +107,6 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_sites', 
 				array( $admin_metrica, 'view_data_sources_sites' ));
-			add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 			$page = add_submenu_page(
 				'abwp_eym', 
@@ -120,7 +115,6 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'eym_view_metrica_reports', 
 				'abwp_eym_view_sources_social', 
 				array( $admin_metrica, 'view_data_sources_social' ));
-			add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 			$page = add_submenu_page(
 				'abwp_eym', 
@@ -129,7 +123,6 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 				'manage_options', 
 				'abwp_eym_settings', 
 				array( $admin_metrica, 'view_settings' ));
-			//add_action( 'load-' . $page, array($this, 'admin_scripts'));
 			//***
 		}
 

@@ -13,7 +13,6 @@ class EasyYandexMetricaDashboard
 	 */
     public function __construct() 
     {
-        wp_enqueue_script( 'chart', plugins_url( '../js/Chart.min.js', __FILE__ ) );
         add_action('wp_dashboard_setup', [ $this, 'dashboardSetup' ], 9 );
     }
 
