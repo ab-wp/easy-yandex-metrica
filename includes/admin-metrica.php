@@ -385,6 +385,9 @@ if ( !class_exists( 'ABWP_Admin_Metrica' ) ) {
 			for ($i_data_result = 0; $i_data_result <= ($i_count_dataset-1); $i_data_result++) {
 				$return['datasets'][$i_data_result]['label'] = "'".$this->get_data_title($data['data'][$i_data_result]['dimensions'][0]['name'])."'";
 				for($i=0;$i<(count($data['data'][$i_data_result]['metrics'][0]));$i++) {
+					if (!isset($return['datasets'][$i_data_result]['data'])) {
+						$return['datasets'][$i_data_result]['data'] = '';
+					}
 					$return['datasets'][$i_data_result]['data'] .= $data['data'][$i_data_result]['metrics'][0][$i].',';
 				}
 				$return['datasets'][$i_data_result]['color'] = "'".$colors[$i_data_result]."'";

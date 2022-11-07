@@ -3,13 +3,13 @@
  * Plugin Name: Easy Yandex Metrica
  * Plugin URI:  https://ab-wp.com/plugins/easy-yandex-metrica/
  * Description: Easily add statistics display Yandex.Metrica to the Wordpress admin panel.
- * Version:     1.2.1
+ * Version:     1.2.2
  * Author:      AB-WP
  * Author URI:  https://ab-wp.com/
  * Text Domain: easy-yandex-metrica
  * Domain Path: /languages
  * Requires at least: 3.9
- * Tested up to: 6.0
+ * Tested up to: 6.1
  * License: GPLv2 (or later)
 **/
 
@@ -22,7 +22,7 @@ if ( !class_exists( 'ABWP_easy_yandex_metrica' ) ) {
 	class ABWP_easy_yandex_metrica
 	{
 		
-		const VERSION = '1.2.1';
+		const VERSION = '1.2.2';
 		
 		public function __construct()
 		{

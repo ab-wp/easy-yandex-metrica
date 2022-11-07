@@ -2,8 +2,8 @@
 Contributors: abwp, nbuth
 Tags: Yandex Metrika, Яндекс.Метрика, Яндекс Метрика, Яндекс, Метрика, Yandex, Metrika, Metrica, statistics, статистика, tools, admin
 Requires at least: 3.9
-Tested up to: 6.0
-Stable tag: 1.2.1
+Tested up to: 6.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,10 @@ You can help with translation to other languages-the plugin is completely ready 
 6. Activate.
 
 == Changelog ==
+
+= 1.2.2 (7 November 2022) =
+* Tested up to WordPress 6.1
+* Small bug fixed
 
 = 1.2.1 (16 July 2022) =
 * Small bug fixed
