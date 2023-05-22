@@ -1,7 +1,25 @@
 # Easy Yandex Metrica
 
-This is the development repository for Easy Yandex Metrica, a WordPress plugin that allows you to view some Yandex Metrica data directly in your admin panel. A copy of the plugin package is downloadable from the [WordPress.org Plugin Directory](https://wordpress.org/plugins/easy-yandex-metrica/).
+The Easy Yandex Metrica plugin allows you to view some Yandex Metrica data directly in your WordPress admin panel
 
-## License
+= What is Yandex Metrica =
+Yandex Metrica is a free tool for evaluating site traffic and analyzing user behavior. Learn all the features of the service 
+you can on the official [page](https://metrica.yandex.com/).
 
-Easy Yandex Metrica is licensed under [GNU General Public License v2 (or later)](./LICENSE).
+== Features ==
+
+The Easy Yandex Metrica plugin adds a graphical display of the following data to the administrative panel
+- the number of visitors to the site
+- sources, summary
+- summary of transitions from search engines
+- summary of transitions from sites
+- summary of transitions from social networks
+
+This plugin does not add the tracking counter code to the site, if you need a simple installation of the code - use our plugin [Simple Counter](https://wordpress.org/plugins/abwp-simple-counter/)
+
+== Translations ==
+The plugin is available in the following languages:
+- English (en_US), built-in
+- Russian (ru_RU), native support
+
+You can help with translation to other languages-the plugin is completely ready for translation!

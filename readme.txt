@@ -2,7 +2,7 @@
 Contributors: abwp, nbuth
 Tags: Yandex Metrika, Яндекс.Метрика, Яндекс Метрика, Яндекс, Метрика, Yandex, Metrika, Metrica, statistics, статистика, tools, admin
 Requires at least: 3.9
-Tested up to: 6.1
+Tested up to: 6.2.2
 Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
